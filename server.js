@@ -3,27 +3,36 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 //mengambil routes show untuk kebutuhan crud api
-const showRoutes = require('../Backend/CRUD api/routes/show.routes')
-const quotationRoutes = require('../Backend/CRUD api/routes/quotation.routes')
+const showRoutes = require('./crud-api/routes/show.routes')
+const quotationRoutes = require('./crud-api/routes/quotation.routes')
 
 const app = express();
 
 let corsOptions = {
-    origin: "htpp://localhost:8080"
+    origin: "htpp://localhost:4200"
 };
 
 const db = require("./JWT Authentication/models");
 const Role = db.role;
 
 //sync memastikan express untuk mengeksekusi code pada bagian ini sebelum proses lain dapat berjalan
-db.sequelize.sync({force:true}).then(() => {
+db.sequelize.sync().then(() => {
     console.log('Drop and Resync Db');
     initial();
   });
 
 app.use(cors(corsOptions));
+//CORS Middleware
+app.use(function (req, res, next) {
+  //Enabling CORS
+  res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+  });
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+
 
 app.use('/show', showRoutes);
 app.use('/quotation',quotationRoutes);
