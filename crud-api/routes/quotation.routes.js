@@ -2,14 +2,15 @@ const express = require('express')
 const router = express.Router()
 const quotationController =   require('../controllers/quotation.controller');
 
-// Retrieve all employees
+// Retrieve all quotation
 router.get('/', quotationController.findAll);
-// Create a new employee
+// Create a new quotation
 router.post('/', quotationController.create);
-// Retrieve a single employee with id
+// Retrieve a single quotation with id
 router.get('/:id', quotationController.findById);
-// Update a employee with id
+// Update a quotation with id
 router.put('/:id', quotationController.update);
-// Delete a employee with id
+// Delete a quotation with id
 router.delete('/:id', quotationController.delete);
+
 module.exports = router ;

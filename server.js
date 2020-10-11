@@ -5,11 +5,12 @@ const cors = require("cors");
 //mengambil routes show untuk kebutuhan crud api
 const showRoutes = require('./crud-api/routes/show.routes')
 const quotationRoutes = require('./crud-api/routes/quotation.routes')
+const ticketRoutes = require('./crud-api/routes/ticket.routes')
 
 const app = express();
 
 let corsOptions = {
-    origin: "htpp://localhost:4200"
+    origin: "http://localhost:4200"
 };
 
 const db = require("./JWT Authentication/models");
@@ -29,13 +30,13 @@ app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   next();
-  });
+  });  
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-
 app.use('/show', showRoutes);
 app.use('/quotation',quotationRoutes);
+app.use('/ticket',ticketRoutes);
 
 //memastikan setiap routes yang dipanggil akan melalui proses authentikasi dahulu)
 require('./JWT Authentication/routes/auth.routes')(app);

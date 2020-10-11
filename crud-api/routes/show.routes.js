@@ -10,8 +10,9 @@ router.post('/', showController.create);
 router.get('/:id', showController.findById);
 // Retrieve a single show with artist
 router.get('/personalize/:artist', showController.findByArtist);
-// Update a employee with id
+// Update a show with id
 router.put('/:id', showController.update);
-// Delete a employee with id
+// Delete a show with id
 router.delete('/:id', showController.delete);
+
 module.exports = router ;
