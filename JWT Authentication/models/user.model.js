@@ -19,9 +19,6 @@ module.exports = (sequelize, Sequelize) => {
       },
       dob: {
           type: Sequelize.DATE
-      },
-      profilepicture: {
-          type: Sequelize.STRING
       }
     });
   

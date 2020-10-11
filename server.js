@@ -2,6 +2,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
+//mengambil routes show untuk kebutuhan crud api
+const showRoutes = require('../Backend/CRUD api/routes/show.routes')
+const quotationRoutes = require('../Backend/CRUD api/routes/quotation.routes')
+
 const app = express();
 
 let corsOptions = {
@@ -21,19 +25,19 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+app.use('/show', showRoutes);
+app.use('/quotation',quotationRoutes);
 
 //memastikan setiap routes yang dipanggil akan melalui proses authentikasi dahulu)
 require('./JWT Authentication/routes/auth.routes')(app);
 require('./JWT Authentication/routes/user.routes')(app);
-
-
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT,() => {
     console.log('Server is running on port ' + PORT);
 });
 
-//function yang dibutuhkan untuk membuat inisial user dan admin
+//function yang dibutuhkan untuk membuat inisial role user dan admin
 function initial() {
     Role.create({
       id: 1,
