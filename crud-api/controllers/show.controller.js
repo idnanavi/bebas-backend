@@ -27,18 +27,18 @@ exports.findById = function(req, res) {
 };
 
 exports.update = function(req, res) {
-  if(req.body.constructor === Object && Object.keys(req.body).length === 0){
-    res.status(400).send({ error:true, message: 'Please provide all required field' });
-  }else{
-    Show.update(req.params.id, new Show(req.body), function(err, show) {
-   res.json({ error:false, message: 'Shows successfully updated' });
-});
-}
+      if(req.body.constructor === Object && Object.keys(req.body).length === 0){
+        res.status(400).send({ error:true, message: 'Please provide all required field' });
+      }else{
+        Show.update(req.params.id, new Show(req.body), function(err, show) {
+       res.json({ error:false, message: 'Shows successfully updated' });
+    });
+  }
 };
 exports.delete = function(req, res) {
-  Show.delete( req.params.id, function(err, show) {  
-  res.json({ error:false, message: 'Show successfully deleted' });
-});
+    Show.delete( req.params.id, function(err, show) {  
+    res.json({ error:false, message: 'Show successfully deleted' });
+  });
 };
 
 exports.findByArtist = function(req, res) {
