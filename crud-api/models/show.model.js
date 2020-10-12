@@ -16,75 +16,75 @@ let Show = function(event){
 
 Show.create = function (newShows, result) {
     dbConn.query("INSERT INTO shows set ?", newShows, function (err, res) {
-    if(err) {
-      console.log("error: ", err);
-      result(err, null);
-    }
-    else{
-      console.log(res.insertId);
-      result(null, res.insertId);
-    }
-    });
+      if(err) {
+        console.log("error: ", err);
+        result(err, null);
+      }
+      else{
+        console.log(res.insertId);
+        result(null, res.insertId);
+      }
+  });
 };
 
 Show.findById = function (id, result) {
     dbConn.query("Select * from shows where id = ? ", id, function (err, res) {
-    if(err) {
-      console.log("error: ", err);
-      result(err, null);
-    }
-    else{
-      result(null, res);
-    }
-    });
+      if(err) {
+        console.log("error: ", err);
+        result(err, null);
+      }
+      else{
+        result(null, res);
+      }
+  });
 };
 
 Show.findAll = function (result) {
     console.log(result)
     dbConn.query("Select * from shows", function (err, res) {
-    if(err) {
-      console.log("error: ", err);
-      result(null, err);
-    }
-    else{
-      console.log('shows : ', res);
-      result(null, res);
-    }
-    });
+      if(err) {
+        console.log("error: ", err);
+        result(null, err);
+      }
+      else{
+        console.log('shows : ', res);
+        result(null, res);
+      }
+  });
 };
 
 Show.delete = function(id, result){
   dbConn.query("DELETE FROM shows WHERE id = ?", [id], function (err, res) {
-  if(err) {
-    console.log("error: ", err);
-    result(null, err);
-  }
-  else{
-    result(null, res);
-  }
+      if(err) {
+        console.log("error: ", err);
+        result(null, err);
+      }
+      else{
+        result(null, res);
+      }
   });
 };
 
 Show.update = function(id, show, result){
   dbConn.query("UPDATE shows SET day=?,date=?,title=?,timeStart=?,price=?,address=?,addressDetail=?,showDetail=?,artist=?,timeStop=? WHERE id = ?", [show.day,show.date,show.title,show.timeStart,show.price,show.address,show.addressDetail,show.showDetail,show.artist,show.timeStop, id], function (err, res) {
-  if(err) {
-    console.log("error: ", err);
-    result(null, err);
-  }else{
-    result(null, res);
-  }
+      if(err) {
+        console.log("error: ", err);
+        result(null, err);
+      }else{
+        result(null, res);
+      }
   });
 };
 
 Show.findByArtist = function (artist, result) {
   dbConn.query("Select * from shows where artist = ? ", artist, function (err, res) {
-  if(err) {
-    console.log("error: ", err);
-    result(err, null);
-  }
-  else{
-    result(null, res);
-  }
+      if(err) {
+        console.log("error: ", err);
+        result(err, null);
+      }
+      else{
+        result(null, res);
+      }
   });
 };
 

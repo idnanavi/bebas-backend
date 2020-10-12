@@ -1,13 +1,13 @@
 const Ticket = require('../models/ticket.model');
 
 exports.findAll = function(req, res) {
-    Ticket.findAll(function(err, event) {
-      console.log('controller')
-      if (err)
-      res.send(err);
-      console.log('res', event);
-      res.send(event);
-    });
+  Ticket.findAll(function(err, event) {
+    console.log('controller')
+    if (err)
+    res.send(err);
+    console.log('res', event);
+    res.send(event);
+  });
 };
 
 exports.create = function(req, res) {
@@ -16,7 +16,6 @@ exports.create = function(req, res) {
   Ticket.create(new_ticket, function(err, ticket) {
     res.json({error:false,message:"Ticket added successfully!",data:ticket});
   });
-  // }
 };
 
 exports.findById = function(req, res) {
@@ -37,8 +36,7 @@ exports.update = function(req, res) {
 }
 };
 exports.delete = function(req, res) {
-Ticket.delete( req.params.id, function(err, ticket) {
-  
+  Ticket.delete( req.params.id, function(err, ticket) {
   res.json({ error:false, message: 'Ticket successfully deleted' });
 });
 };

@@ -38,7 +38,6 @@ exports.update = function(req, res) {
 };
 exports.delete = function(req, res) {
   Quotation.delete( req.params.id, function(err, quotation) {
-  
-  res.json({ error:false, message: 'Quotation successfully deleted' });
-});
+      res.json({ error:false, message: 'Quotation successfully deleted' });
+  });
 };

@@ -1,13 +1,13 @@
 const Show = require('../models/show.model');
 
 exports.findAll = function(req, res) {
-    Show.findAll(function(err, event) {
-      console.log('controller')
-      if (err)
-      res.send(err);
-      console.log('res', event);
-      res.send(event);
-    });
+  Show.findAll(function(err, event) {
+    console.log('controller')
+    if (err)
+    res.send(err);
+    console.log('res', event);
+    res.send(event);
+  });
 };
 
 exports.create = function(req, res) {
@@ -16,7 +16,6 @@ exports.create = function(req, res) {
   Show.create(new_show, function(err, show) {
     res.json({error:false,message:"Show added successfully!",data:show});
   });
-  // }
 };
 
 exports.findById = function(req, res) {
@@ -37,8 +36,7 @@ exports.update = function(req, res) {
 }
 };
 exports.delete = function(req, res) {
-Show.delete( req.params.id, function(err, show) {
-  
+  Show.delete( req.params.id, function(err, show) {  
   res.json({ error:false, message: 'Show successfully deleted' });
 });
 };
